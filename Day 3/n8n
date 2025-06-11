@@ -1,0 +1,496 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        0
+      ],
+      "id": "ec10e6cb-84aa-417e-8538-60bb2bc0cf81",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -980,
+        20
+      ],
+      "id": "695225ef-b277-45cd-acea-64a5977668fc",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2KtDsQLUDGilvGnD",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json['What will you do today?'] }}{{ $json.Name }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        -120
+      ],
+      "id": "98fecac5-7583-494b-bd75-740d44eb4fcd",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        260
+      ],
+      "id": "9e7a5b90-f936-4ff6-b2b6-2c8058b5a75e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iXxVAxzIedWzUr4X",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "60883194-5cdc-4a14-9763-3355751d03cf",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -360,
+        40
+      ],
+      "id": "4248d2af-47d5-4ca6-b6b3-af987b52a8c3",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -200,
+        -120
+      ],
+      "id": "6204d946-f95b-4201-b244-b248c9b638c1",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2KtDsQLUDGilvGnD",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BhQmey1uGG6U_e_dq0f2EdHzctqlzyHQxOUWzG2Cr_k/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -140,
+        240
+      ],
+      "id": "f9183a87-d669-48bb-94a3-242c8e4ee839",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2KtDsQLUDGilvGnD",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "hariparamesh29@gmail.com",
+        "subject": "Project Mgt Report ",
+        "emailType": "text",
+        "message": "Reports being generated from the given sheets ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        60,
+        40
+      ],
+      "id": "fcaf5c08-c2df-4de5-bb2f-17fa5b0780cc",
+      "name": "Gmail",
+      "webhookId": "75f3efae-fa24-4a1f-aae4-bef51756371b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "5SLWbv0ZioHS7TaN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.id }}{{ $json.threadId }} provide employee name ",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        300,
+        -140
+      ],
+      "id": "4ef1cd30-9399-427d-b679-25b7bd2e5743",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        360,
+        300
+      ],
+      "id": "69739c86-b6e3-4a90-a56b-12dd9418ba16",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iXxVAxzIedWzUr4X",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        40
+      ],
+      "id": "2419cc3e-1914-41f6-8e11-b07640930b74",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "sendTo": "hariparamesh29@gmail.com",
+        "subject": "Report Generation ",
+        "emailType": "text",
+        "message": "The standup records been identified and reports been sent to different team leaders ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        920,
+        40
+      ],
+      "id": "0c0d5bc1-0bf2-47cf-9f5b-e44a422da9ca",
+      "name": "Gmail1",
+      "webhookId": "5743a77e-a874-479c-ae79-5cb319c1a46c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "5SLWbv0ZioHS7TaN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.id }} provide id ",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        40
+      ],
+      "id": "b74f80bd-3bfb-48a4-94d9-862335a2cd2b",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        260
+      ],
+      "id": "3808eb4f-23a0-4186-b879-de78773479b9",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iXxVAxzIedWzUr4X",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "hariparamesh29@gmail.com",
+        "subject": "HI",
+        "emailType": "text",
+        "message": "Your meeting been responded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1500,
+        40
+      ],
+      "id": "29ab0a46-f983-48d3-b25d-ae5b8e18ec94",
+      "name": "Gmail2",
+      "webhookId": "818c4003-f9df-4527-8391-8f25a5176a5a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "5SLWbv0ZioHS7TaN",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Gmail2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fc9142c9-8f8b-4f09-8bf8-8d2111fa5154",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b41f63ed336034d20fbc8067c8776faa129b3197e3c79679d419d33518147a56"
+  },
+  "id": "SmeD4CrJ67ATo9pc",
+  "tags": []
+}
